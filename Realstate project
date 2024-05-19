@@ -1,0 +1,41 @@
+-- Create a database for the real estate project
+CREATE DATABASE RealEstateDB;
+USE RealEstateDB;
+
+-- Create a table to store property information
+CREATE TABLE Properties (
+    PropertyID INT PRIMARY KEY,
+    Address VARCHAR(255),
+    Price DECIMAL(10, 2),
+    Bedrooms INT,
+    Bathrooms INT
+);
+
+-- Create a table to store agent details
+CREATE TABLE Agents (
+    AgentID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Email VARCHAR(100),
+    Phone VARCHAR(20)
+);
+
+-- Create a table to store client information
+CREATE TABLE Clients (
+    ClientID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Email VARCHAR(100),
+    Phone VARCHAR(20)
+);
+
+-- Create a table to store transaction history
+CREATE TABLE Transactions (
+    TransactionID INT PRIMARY KEY,
+    PropertyID INT,
+    ClientID INT,
+    AgentID INT,
+    SalePrice DECIMAL(10, 2),
+    SaleDate DATE,
+    FOREIGN KEY (PropertyID) REFERENCES Properties(PropertyID),
+    FOREIGN KEY (ClientID) REFERENCES Clients(ClientID),
+    FOREIGN KEY (AgentID) REFERENCES Agents(AgentID)
+);
